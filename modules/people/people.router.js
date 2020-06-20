@@ -13,6 +13,13 @@ router.get('/', (req, res) => {
   return res.json(people);
 })
 
+router.post('/', json, (req, res) => {
+  const { name } = req.body;
+  if (!name) return res.status(404).json({ error: 'You must include a valid name' });
+  People.enqueue(name);
+  return res.status(201).json({ message: 'Successfully inserted in queue.' });
+})
+
 router.delete('/', json, (req, res) => {
   // Remove a person from the queue
   People.dequeue();
