@@ -8,9 +8,9 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   // Return all the people currently in the queue.
-  let people = People.get()
-  if (!people) return res.status(404).json({ error: 'No people are in line.' });
-  return res.json(people);
+  let people = People.get();
+  if (!people || people.length === 0) return res.status(404).json({ error: 'No people are in line.' });
+  return res.status(200).json(people);
 })
 
 router.post('/', json, (req, res) => {

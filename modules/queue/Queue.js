@@ -20,7 +20,8 @@ class Queue {
   dequeue() {
     if (this.first === null) return;
 
-    const node = this.first;
+    // if (this.first.next === null) return;
+    let node = this.first;
     this.first = this.first.next;
     if (node === this.last) this.last = null;
 
@@ -29,12 +30,13 @@ class Queue {
 
   show() {
     // Return the next item in the queue.
-    if (this.first.value) return this.first.value;
+    if (this.first.value !== null) return this.first.value;
     return null;
   }
 
   all() {
     // Return all items in the queue.
+    if (this.first === null) return false;
     let current = this.first;
     const tempArray = [];
     while (current) {
