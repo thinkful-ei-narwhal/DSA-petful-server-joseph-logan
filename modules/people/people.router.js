@@ -1,6 +1,6 @@
 const express = require('express');
 const json = require('body-parser').json();
-const People = require('./peopleService');
+const People = require('./people.service');
 
 const router = express.Router();
 
@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
 });
 router.post('/', express.json(), (req, res) => {
   const { name } = req.body;
-  console.log(name);
   if (!name) return res.status(400).json({ error: 'You must include a valid name' });
   People.enqueue(name);
   return res.status(201).json({ name: name });
