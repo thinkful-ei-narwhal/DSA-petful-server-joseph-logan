@@ -1,29 +1,29 @@
 const express = require('express');
 const json = require('body-parser').json();
-
-const People = require('./people.service')
-const { response } = require('express')
+const People = require('./peopleService');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
   // Return all the people currently in the queue.
   let people = People.get();
-  if (!people || people.length === 0) return res.status(404).json({ error: 'No people are in line.' });
-  return res.status(200).json(people);
-})
-
-router.post('/', json, (req, res) => {
+  if (!people) return res.status(404).json({ error: 'No people are in line.' });
+  return res.json(people);
+});
+router.post('/', express.json(), (req, res) => {
   const { name } = req.body;
-  if (!name) return res.status(404).json({ error: 'You must include a valid name' });
+  console.log(name);
+  if (!name) return res.status(400).json({ error: 'You must include a valid name' });
   People.enqueue(name);
-  return res.status(201).json({ message: 'Successfully inserted in queue.' });
-})
-
+  return res.status(201).json({ name: name });
+});
 router.delete('/', json, (req, res) => {
   // Remove a person from the queue
   People.dequeue();
-  return res.status(204).json({ message: 'Next in line!' })
-})
+  const remaining = People.get();
+
+  res.json({ remaining });
+
+});
 
 module.exports = router;
