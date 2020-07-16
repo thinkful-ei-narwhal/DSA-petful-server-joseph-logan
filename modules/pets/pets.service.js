@@ -21,12 +21,14 @@ module.exports = {
   },
 
   getAll() {
-    return {cats: [...pets.cats.all()], dogs: [...pets.dogs.all()]}
+    return { cats: [...pets.cats.all()], dogs: [...pets.dogs.all()] };
   },
 
   dequeue(type) {
     // Remove a pet from the queue.
-    if (type === 'cats') pets.cats.dequeue();
-    if (type === 'dogs') pets.dogs.dequeue();
-  }
+    if (type === 'cats') pets.cats.enqueue(pets.cats.dequeue());
+    if (type === 'dogs') pets.dogs.enqueue(pets.dogs.dequeue());
+  },
+  //add a pet back to the queue
+
 };
