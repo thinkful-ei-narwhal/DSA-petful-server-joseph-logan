@@ -25,7 +25,7 @@ router.delete('/', json, (req, res) => {
   else {
     People.dequeue();
   }
-
+  const remaining = People.get()
   res.json({ remaining });
 });
 
