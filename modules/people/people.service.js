@@ -20,8 +20,13 @@ module.exports = {
     return peopleQueue.enqueue(person);
   },
 
-  dequeue() {
+  dequeueLoop() {
     // Remove a person from the queue.
     return peopleQueue.enqueue(peopleQueue.dequeue());
+  },
+
+  dequeue() {
+    // Remove a person from the queue.
+    return peopleQueue.dequeue();
   }
 };

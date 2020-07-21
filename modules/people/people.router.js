@@ -18,12 +18,15 @@ router.post('/', express.json(), (req, res) => {
 });
 router.delete('/', json, (req, res) => {
   // Remove a person from the queue
-  People.dequeue();
-  
-  const remaining = People.get();
+  let temp = People.get();
+  if (temp[0] === 'Randy Lahey' || temp[0] === 'Trevor Cory' || temp[0] === 'Jim Lahey') {
+    People.dequeueLoop();
+  }
+  else {
+    People.dequeue();
+  }
 
   res.json({ remaining });
-
 });
 
 module.exports = router;
