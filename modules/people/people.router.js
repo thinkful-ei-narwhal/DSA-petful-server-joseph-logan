@@ -19,6 +19,7 @@ router.post('/', express.json(), (req, res) => {
 router.delete('/', json, (req, res) => {
   // Remove a person from the queue
   People.dequeue();
+  
   const remaining = People.get();
 
   res.json({ remaining });
