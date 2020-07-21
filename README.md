@@ -1,7 +1,7 @@
 # Petful Server
 
-Link to Live App: https://petful-app-five.vercel.app/
-Link to Client Repo: https://github.com/thinkful-ei-narwhal/Petful-client-Joseph-Logan
+- Link to Live App: https://petful-app-five.vercel.app/
+- Link to Client Repo: https://github.com/thinkful-ei-narwhal/Petful-client-Joseph-Logan
 
 ## Name of Pair
 
